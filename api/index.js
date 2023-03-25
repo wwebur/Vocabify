@@ -250,18 +250,15 @@ function generatePrompt(word) {
 }
 
 // app/components/input/Input.js
-var import_BarLoader = require("react-spinners/BarLoader"), import_PacmanLoader = require("react-spinners/PacmanLoader"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), appId = "c95dfa5c-ef43-437c-8400-f64515f67846", SpeechlySpeechRecognition = (0, import_speech_recognition_polyfill.createSpeechlySpeechRecognition)(appId);
+var import_dompurify = __toESM(require("dompurify")), import_react_spinners = require("react-spinners"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), appId = "c95dfa5c-ef43-437c-8400-f64515f67846", SpeechlySpeechRecognition = (0, import_speech_recognition_polyfill.createSpeechlySpeechRecognition)(appId);
 import_react_speech_recognition.default.applyPolyfill(SpeechlySpeechRecognition);
 function Input() {
-  let [speech, setSpeech] = (0, import_react3.useState)("hibernation"), [response, setResponse] = (0, import_react3.useState)(""), [isLoading, setIsLoading] = (0, import_react3.useState)(!1), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
-  if ((0, import_react3.useEffect)(() => {
+  let [isReady, setIsReady] = (0, import_react3.useState)(!1), [speech, setSpeech] = (0, import_react3.useState)("hibernation"), [response, setResponse] = (0, import_react3.useState)(""), [isLoading, setIsLoading] = (0, import_react3.useState)(!1), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
+  (0, import_react3.useEffect)(() => {
     transcript && (setSpeech(transcript), import_react_speech_recognition.default.stopListening());
-  }, [transcript]), !browserSupportsSpeechRecognition)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("span", { children: "Browser doesn't support speech recognition." }, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 30,
-      columnNumber: 12
-    }, this);
+  }, [transcript]), (0, import_react3.useEffect)(() => {
+    setIsReady(!0);
+  }, []);
   async function onSubmit() {
     setResponse(""), setIsLoading(!0);
     try {
@@ -274,31 +271,37 @@ function Input() {
   function reset() {
     setSpeech(""), setResponse(""), resetTranscript(), import_react_speech_recognition.default.stopListening();
   }
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "input", children: [
+  function highlightWord(word, string) {
+    if (!word || !string)
+      return;
+    let regex = new RegExp(word, "gi");
+    return string.replace(regex, `<b>${word}</b>`);
+  }
+  return isReady ? browserSupportsSpeechRecognition ? /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "input", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("h2", { children: "gimme a word." }, void 0, !1, {
       fileName: "app/components/input/Input.js",
-      lineNumber: 60,
+      lineNumber: 75,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: import_react_speech_recognition.default.startListening, disabled: listening, children: "record" }, void 0, !1, {
         fileName: "app/components/input/Input.js",
-        lineNumber: 63,
+        lineNumber: 78,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: reset, disabled: !speech, children: "reset" }, void 0, !1, {
         fileName: "app/components/input/Input.js",
-        lineNumber: 69,
+        lineNumber: 84,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/components/input/Input.js",
-      lineNumber: 62,
+      lineNumber: 77,
       columnNumber: 7
     }, this),
     listening && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "listening", children: "listening..." }, void 0, !1, {
       fileName: "app/components/input/Input.js",
-      lineNumber: 74,
+      lineNumber: 89,
       columnNumber: 21
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "input-container", children: [
@@ -314,58 +317,86 @@ function Input() {
         !1,
         {
           fileName: "app/components/input/Input.js",
-          lineNumber: 78,
+          lineNumber: 94,
           columnNumber: 11
         },
         this
       ) }, void 0, !1, {
         fileName: "app/components/input/Input.js",
-        lineNumber: 77,
+        lineNumber: 93,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { className: "submit-btn", onClick: onSubmit, disabled: isLoading || !speech, children: "submit" }, void 0, !1, {
         fileName: "app/components/input/Input.js",
-        lineNumber: 85,
+        lineNumber: 103,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/components/input/Input.js",
-      lineNumber: 76,
+      lineNumber: 91,
       columnNumber: 7
     }, this),
-    isLoading && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "loading", children: "loading..." }, void 0, !1, {
+    isLoading && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_react_spinners.PropagateLoader, { color: "#005277", className: "loader" }, void 0, !1, {
       fileName: "app/components/input/Input.js",
-      lineNumber: 93,
+      lineNumber: 109,
       columnNumber: 21
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "response", children: response.definition }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "response", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+        "div",
+        {
+          dangerouslySetInnerHTML: { __html: import_dompurify.default.sanitize(highlightWord(speech, response.definition)) }
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/components/input/Input.js",
+          lineNumber: 114,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("br", {}, void 0, !1, {
+        fileName: "app/components/input/Input.js",
+        lineNumber: 117,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+        "div",
+        {
+          dangerouslySetInnerHTML: { __html: import_dompurify.default.sanitize(highlightWord(speech, response.example)) }
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/components/input/Input.js",
+          lineNumber: 118,
+          columnNumber: 9
+        },
+        this
+      )
+    ] }, void 0, !0, {
       fileName: "app/components/input/Input.js",
-      lineNumber: 95,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("br", {}, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 96,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "response", children: response.example }, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 97,
+      lineNumber: 113,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/components/input/Input.js",
-    lineNumber: 59,
+    lineNumber: 74,
     columnNumber: 5
-  }, this);
+  }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("span", { children: "Browser doesn't support speech recognition." }, void 0, !1, {
+    fileName: "app/components/input/Input.js",
+    lineNumber: 70,
+    columnNumber: 12
+  }, this) : null;
 }
 var Input_default = Input;
 
 // app/index.css
-var app_default = "/build/_assets/index-M5SNWYHE.css";
+var app_default = "/build/_assets/index-CD3XJDI5.css";
 
 // app/routes/index.jsx
-var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
+var import_react4 = require("react"), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
 function links() {
   return [
     {
@@ -375,34 +406,37 @@ function links() {
   ];
 }
 function Index() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "app", children: [
+  let [isReady, setIsReady] = (0, import_react4.useState)(!1);
+  return (0, import_react4.useEffect)(() => {
+    setIsReady(!0);
+  }, []), isReady ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "app", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "header", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: "wordbot" }, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 19,
+      lineNumber: 29,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 18,
+      lineNumber: 28,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "main", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Input_default, {}, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 23,
+      lineNumber: 33,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 22,
+      lineNumber: 32,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/index.jsx",
-    lineNumber: 17,
+    lineNumber: 27,
     columnNumber: 5
-  }, this);
+  }, this) : null;
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "f707550e", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-TSJOV2BX.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-TWMIPHTB.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-F707550E.js" };
+var assets_manifest_default = { version: "3b041cb9", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-TSJOV2BX.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-OLZNH4FI.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-3B041CB9.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

@@ -21,17 +21,16 @@
   font-style: normal;
 }
 
-$blue: rgb(0, 82, 119);
+$blue: #005277;
 
 * {
   color: $blue;
-  font-weight: bold;
 }
 
 .app {
   font-family: "Montserrat", sans-serif;
   font-size: 1.5em;
-  margin: 50px;
+  margin: 50px 50px 100px;
 
   .header {
     display: flex;
@@ -53,7 +52,6 @@ $blue: rgb(0, 82, 119);
   }
 
   .main {
-    // font-size: 32px;
     line-height: 2em;
     color: #353740;
     display: flex;
@@ -75,12 +73,14 @@ $blue: rgb(0, 82, 119);
 
       .word-input {
         width: 100%;
-        max-width: 200px;
+        max-width: 300px;
         height: 40px;
+        text-align: center;
       }
 
       .input-container {
         display: flex;
+        flex-direction: column;
         align-items: center;
         margin-top: 20px;
       }
@@ -111,36 +111,43 @@ $blue: rgb(0, 82, 119);
         cursor: pointer;
         transition: background-color 0.2s ease;
 
+        &.submit-btn {
+          margin-top: 20px;
+        }
+
         &:hover {
           background-color: $blue;
         }
 
         &:disabled {
           background-color: #006fc3b4;
-          // color: #666;
           cursor: not-allowed;
         }
       }
 
-      .listening,
-      .loading {
+      .listening {
         margin-top: 20px;
+      }
+
+      .loader {
+        margin-top: 40px;
       }
     }
 
     .response {
       margin-top: 50px;
+      line-height: 1.5;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
   }
 }
 
 // mobile
 @media screen and (max-width: 650px) {
-  .input-container {
-    flex-direction: column;
-
-    .submit-btn {
-      margin-top: 20px;
-    };
+  .app {
+    margin: 20px 20px 100px;
   }
 }

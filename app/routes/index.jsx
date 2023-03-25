@@ -1,5 +1,6 @@
 import Input from "../components/input/Input";
 import styles from "~/index.css";
+import { useState, useEffect } from "react";
 
 export function links() {
   return [
@@ -11,7 +12,16 @@ export function links() {
 }
 
 export default function Index() {
+  const [isReady, setIsReady] = useState(false);
   // console.log(ENV);
+
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
+
+  if (!isReady) {
+    return null;
+  }
 
   return (
     <div className="app">

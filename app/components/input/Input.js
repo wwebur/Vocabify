@@ -3,8 +3,8 @@ import "regenerator-runtime";
 import { createSpeechlySpeechRecognition } from "@speechly/speech-recognition-polyfill";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import submitPrompt from "../../api/prompt";
-import BarLoader from "react-spinners/BarLoader";
-import PacmanLoader from "react-spinners/PacmanLoader";
+import DOMPurify from "dompurify";
+import { PropagateLoader } from "react-spinners";
 
 // use speechly polyfill for browser support
 const appId = "c95dfa5c-ef43-437c-8400-f64515f67846";
@@ -12,7 +12,7 @@ const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
 SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
 function Input() {
-  //   console.log(ENV);
+  const [isReady, setIsReady] = useState(false);
   const [speech, setSpeech] = useState("hibernation");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -26,9 +26,9 @@ function Input() {
     }
   }, [transcript]);
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
 
   async function onSubmit() {
     setResponse("");
@@ -54,7 +54,22 @@ function Input() {
     SpeechRecognition.stopListening();
   }
 
-  // Return a JSX element that displays the speech and a button to start listening
+  // function that finds a particular word in a string and bolds it
+  function highlightWord(word, string) {
+    if (!word || !string) return;
+
+    const regex = new RegExp(word, "gi");
+    return string.replace(regex, `<b>${word}</b>`);
+  }
+
+  if (!isReady) {
+    return null;
+  }
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
   return (
     <div className="input">
       <h2>gimme a word.</h2>
@@ -74,6 +89,7 @@ function Input() {
       {listening && <div className="listening">listening...</div>}
 
       <div className="input-container">
+        {/* word input */}
         <div className="word">
           <input
             type="text"
@@ -82,19 +98,27 @@ function Input() {
             onChange={(e) => setSpeech(e.target.value)}
           />
         </div>
+
+        {/* submit button */}
         <button className="submit-btn" onClick={onSubmit} disabled={isLoading || !speech}>
           submit
         </button>
       </div>
 
-      {/* {isLoading && <BarLoader color="#36d7b7" />} */}
-      {/* <PacmanLoader color="#484848" /> */}
+      {/* loader */}
+      {isLoading && <PropagateLoader color="#005277" className="loader" />}
 
-      {isLoading && <div className="loading">loading...</div>}
+      {/* {isLoading && <div className="loader">loading...</div>} */}
 
-      <div className="response">{response.definition}</div>
-      <br />
-      <div className="response">{response.example}</div>
+      <div className="response">
+        <div
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(highlightWord(speech, response.definition)) }}
+        ></div>
+        <br />
+        <div
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(highlightWord(speech, response.example)) }}
+        ></div>
+      </div>
     </div>
   );
 }
