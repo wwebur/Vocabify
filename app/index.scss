@@ -44,11 +44,6 @@ $blue: #005277;
       font-size: 72px;
       margin: 0;
     }
-
-    &.is-loading {
-      height: 100vh;
-      margin-top: 0;
-    }
   }
 
   .main {
@@ -59,29 +54,23 @@ $blue: #005277;
     align-items: center;
     justify-content: center;
 
-    .icon {
-      width: 130px;
+    h2 {
+      font-size: 24px;
     }
 
-    .input {
+    .input-component {
       width: 100%;
       max-width: 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
 
       form {
         display: flex;
         flex-direction: column;
         align-items: center;
-      }
-
-      .word-input {
-        width: 100%;
-        max-width: 300px;
-        height: 40px;
-        text-align: center;
       }
 
       .input-container {
@@ -91,18 +80,23 @@ $blue: #005277;
         margin-top: 20px;
       }
 
-      .word {
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-
       .word-input {
+        width: 95%;
+        max-width: 300px;
+        height: 40px;
+        text-align: center;
+        outline: none;
         padding: 20px 20px 10px;
         font-size: 42px;
+        line-height: 1;
         border: none;
         border-bottom: 2px solid $blue;
         font-family: "Lobster", sans-serif;
+
+        &:focus {
+          transform: scale(1.03);
+          transition: transform 0.2s ease;
+        }
 
         &::placeholder {
           color: #00517733;
@@ -113,7 +107,7 @@ $blue: #005277;
         padding: 10px 20px;
         font-size: 16px;
         background-color: #0078d48c;
-        color: #e6f7ffcc;
+        color: #e6f7ff;
         border: none;
         border-radius: 10px;
         margin-left: 10px;
@@ -123,16 +117,25 @@ $blue: #005277;
 
         &.submit-btn {
           margin-top: 20px;
+
+          &:hover {
+            transform: scale(1.03);
+          }
         }
 
         &:hover {
-          background-color: $blue;
+          background-color: darken(#0078d48c, 10%);
+          transition: all 0.2s ease;
         }
 
         &:disabled {
-          background-color: #006fc3b4;
+          background-color: #b5cdd8b4;
           cursor: not-allowed;
         }
+      }
+
+      .error {
+        margin-top: 20px;
       }
 
       .listening {

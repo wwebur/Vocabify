@@ -16,6 +16,7 @@ function Input() {
   const [speech, setSpeech] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showError, setShowError] = useState("");
   const responseRef = useRef();
   const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
@@ -42,6 +43,7 @@ function Input() {
     e.preventDefault();
     setResponse("");
     setIsLoading(true);
+    setShowError(false);
 
     // submit openai prompt
     try {
@@ -50,9 +52,8 @@ function Input() {
       setResponse(formattedResult);
       setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      setShowError(true);
       setIsLoading(false);
-      //   setShowError(true);
     }
   }
 
@@ -61,11 +62,14 @@ function Input() {
     setResponse("");
     resetTranscript();
     SpeechRecognition.stopListening();
+    setShowError(false);
   }
 
   // function that finds a particular word in a string and bolds it
   function highlightWord(word, string) {
-    if (!word || !string) return;
+    if (!word || !string) {
+      return;
+    }
 
     const regex = new RegExp(word, "gi");
     return string.replace(regex, `<b>${word}</b>`);
@@ -80,17 +84,22 @@ function Input() {
   }
 
   return (
-    <div className="input">
-      <h2>gimme a word.</h2>
+    <div className="input-component">
+      <h2>
+        give a word,
+        <br />
+        get a definition and example.
+      </h2>
 
+      {/* form */}
       <form onSubmit={onSubmit}>
         <div>
+          {/* record button */}
           <button type="button" tabIndex="-1" onClick={SpeechRecognition.startListening} disabled={listening}>
             record
           </button>
-          {/* <button onClick={SpeechRecognition.stopListening} disabled={!listening}>
-        Stop
-      </button> */}
+
+          {/* reset button */}
           <button type="button" tabIndex="-1" onClick={reset} disabled={!speech}>
             reset
           </button>
@@ -100,21 +109,27 @@ function Input() {
 
         <div className="input-container">
           {/* word input */}
-          <div className="word">
-            <input
-              tabIndex="1"
-              type="text"
-              className="word-input"
-              value={speech}
-              placeholder="type something"
-              onChange={(e) => setSpeech(e.target.value)}
-            />
-          </div>
+          <input
+            tabIndex="1"
+            type="text"
+            className="word-input"
+            value={speech}
+            placeholder="type something"
+            onChange={(e) => setSpeech(e.target.value)}
+          />
 
           {/* submit button */}
           <button type="submit" className="submit-btn" onClick={onSubmit} disabled={isLoading || !speech}>
             submit
           </button>
+
+          {/* error message */}
+          {showError && (
+            <div className="error">
+              Something went wrong :( <br />
+              Please try again.
+            </div>
+          )}
         </div>
       </form>
 

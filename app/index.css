@@ -34,10 +34,6 @@
   font-size: 72px;
   margin: 0;
 }
-.app .header.is-loading {
-  height: 100vh;
-  margin-top: 0;
-}
 .app .main {
   line-height: 2em;
   color: #353740;
@@ -46,54 +42,54 @@
   align-items: center;
   justify-content: center;
 }
-.app .main .icon {
-  width: 130px;
+.app .main h2 {
+  font-size: 24px;
 }
-.app .main .input {
+.app .main .input-component {
   width: 100%;
   max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
-.app .main .input form {
+.app .main .input-component form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.app .main .input .word-input {
-  width: 100%;
-  max-width: 300px;
-  height: 40px;
-  text-align: center;
-}
-.app .main .input .input-container {
+.app .main .input-component .input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
 }
-.app .main .input .word {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.app .main .input .word-input {
+.app .main .input-component .word-input {
+  width: 95%;
+  max-width: 300px;
+  height: 40px;
+  text-align: center;
+  outline: none;
   padding: 20px 20px 10px;
   font-size: 42px;
+  line-height: 1;
   border: none;
   border-bottom: 2px solid #005277;
   font-family: "Lobster", sans-serif;
 }
-.app .main .input .word-input::placeholder {
+.app .main .input-component .word-input:focus {
+  transform: scale(1.03);
+  transition: transform 0.2s ease;
+}
+.app .main .input-component .word-input::placeholder {
   color: rgba(0, 81, 119, 0.2);
 }
-.app .main .input button {
+.app .main .input-component button {
   padding: 10px 20px;
   font-size: 16px;
   background-color: rgba(0, 120, 212, 0.5490196078);
-  color: rgba(230, 247, 255, 0.8);
+  color: #e6f7ff;
   border: none;
   border-radius: 10px;
   margin-left: 10px;
@@ -101,20 +97,27 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-.app .main .input button.submit-btn {
+.app .main .input-component button.submit-btn {
   margin-top: 20px;
 }
-.app .main .input button:hover {
-  background-color: #005277;
+.app .main .input-component button.submit-btn:hover {
+  transform: scale(1.03);
 }
-.app .main .input button:disabled {
-  background-color: rgba(0, 111, 195, 0.7058823529);
+.app .main .input-component button:hover {
+  background-color: rgba(0, 91, 161, 0.5490196078);
+  transition: all 0.2s ease;
+}
+.app .main .input-component button:disabled {
+  background-color: rgba(181, 205, 216, 0.7058823529);
   cursor: not-allowed;
 }
-.app .main .input .listening {
+.app .main .input-component .error {
   margin-top: 20px;
 }
-.app .main .input .loader {
+.app .main .input-component .listening {
+  margin-top: 20px;
+}
+.app .main .input-component .loader {
   margin-top: 40px;
 }
 .app .main .response {
