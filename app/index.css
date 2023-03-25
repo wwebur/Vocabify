@@ -57,6 +57,11 @@
   align-items: center;
   justify-content: center;
 }
+.app .main .input form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .app .main .input .word-input {
   width: 100%;
   max-width: 300px;
@@ -75,17 +80,20 @@
   align-items: center;
 }
 .app .main .input .word-input {
-  padding: 20px 20px 5px;
+  padding: 20px 20px 10px;
   font-size: 42px;
   border: none;
   border-bottom: 2px solid #005277;
   font-family: "Lobster", sans-serif;
 }
+.app .main .input .word-input::placeholder {
+  color: rgba(0, 81, 119, 0.2);
+}
 .app .main .input button {
   padding: 10px 20px;
   font-size: 16px;
   background-color: rgba(0, 120, 212, 0.5490196078);
-  color: #fff;
+  color: rgba(230, 247, 255, 0.8);
   border: none;
   border-radius: 10px;
   margin-left: 10px;

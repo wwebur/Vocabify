@@ -71,6 +71,12 @@ $blue: #005277;
       align-items: center;
       justify-content: center;
 
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       .word-input {
         width: 100%;
         max-width: 300px;
@@ -92,18 +98,22 @@ $blue: #005277;
       }
 
       .word-input {
-        padding: 20px 20px 5px;
+        padding: 20px 20px 10px;
         font-size: 42px;
         border: none;
         border-bottom: 2px solid $blue;
         font-family: "Lobster", sans-serif;
+
+        &::placeholder {
+          color: #00517733;
+        }
       }
 
       button {
         padding: 10px 20px;
         font-size: 16px;
         background-color: #0078d48c;
-        color: #fff;
+        color: #e6f7ffcc;
         border: none;
         border-radius: 10px;
         margin-left: 10px;

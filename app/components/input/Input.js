@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "regenerator-runtime";
 import { createSpeechlySpeechRecognition } from "@speechly/speech-recognition-polyfill";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
@@ -13,9 +13,10 @@ SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
 function Input() {
   const [isReady, setIsReady] = useState(false);
-  const [speech, setSpeech] = useState("hibernation");
+  const [speech, setSpeech] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const responseRef = useRef();
   const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   useEffect(() => {
@@ -26,11 +27,19 @@ function Input() {
     }
   }, [transcript]);
 
+  // scroll to results
+  useEffect(() => {
+    if (response) {
+      responseRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [response]);
+
   useEffect(() => {
     setIsReady(true);
   }, []);
 
-  async function onSubmit() {
+  async function onSubmit(e) {
+    e.preventDefault();
     setResponse("");
     setIsLoading(true);
 
@@ -74,43 +83,46 @@ function Input() {
     <div className="input">
       <h2>gimme a word.</h2>
 
-      <div>
-        <button onClick={SpeechRecognition.startListening} disabled={listening}>
-          record
-        </button>
-        {/* <button onClick={SpeechRecognition.stopListening} disabled={!listening}>
+      <form onSubmit={onSubmit}>
+        <div>
+          <button type="button" tabIndex="-1" onClick={SpeechRecognition.startListening} disabled={listening}>
+            record
+          </button>
+          {/* <button onClick={SpeechRecognition.stopListening} disabled={!listening}>
         Stop
       </button> */}
-        <button onClick={reset} disabled={!speech}>
-          reset
-        </button>
-      </div>
-
-      {listening && <div className="listening">listening...</div>}
-
-      <div className="input-container">
-        {/* word input */}
-        <div className="word">
-          <input
-            type="text"
-            className="word-input"
-            value={speech}
-            onChange={(e) => setSpeech(e.target.value)}
-          />
+          <button type="button" tabIndex="-1" onClick={reset} disabled={!speech}>
+            reset
+          </button>
         </div>
 
-        {/* submit button */}
-        <button className="submit-btn" onClick={onSubmit} disabled={isLoading || !speech}>
-          submit
-        </button>
-      </div>
+        {listening && <div className="listening">listening...</div>}
+
+        <div className="input-container">
+          {/* word input */}
+          <div className="word">
+            <input
+              tabIndex="1"
+              type="text"
+              className="word-input"
+              value={speech}
+              placeholder="type something"
+              onChange={(e) => setSpeech(e.target.value)}
+            />
+          </div>
+
+          {/* submit button */}
+          <button type="submit" className="submit-btn" onClick={onSubmit} disabled={isLoading || !speech}>
+            submit
+          </button>
+        </div>
+      </form>
 
       {/* loader */}
       {isLoading && <PropagateLoader color="#005277" className="loader" />}
 
-      {/* {isLoading && <div className="loader">loading...</div>} */}
-
-      <div className="response">
+      {/* response */}
+      <div className="response" ref={responseRef}>
         <div
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(highlightWord(speech, response.definition)) }}
         ></div>
