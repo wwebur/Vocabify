@@ -32,5 +32,5 @@ export default async function submitPrompt(word = "") {
 function generatePrompt(word) {
   return `Define the word ${word}. Then give me an example of its use in a sentence. Use proper grammar and punctuation. 
   
-  Return in json format like: {"definition": "<definition>", "example": "Example: <example>"}`;
+  Return in json format like: {"definition": "<definition>", "example": "<example>"}`;
 }

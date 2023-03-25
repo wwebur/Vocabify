@@ -14,6 +14,7 @@ SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 function Input() {
   const [isReady, setIsReady] = useState(false);
   const [speech, setSpeech] = useState("");
+  const [speechInput, setSpeechInput] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showError, setShowError] = useState("");
@@ -41,13 +42,14 @@ function Input() {
 
   async function onSubmit(e) {
     e.preventDefault();
+    setSpeech(speechInput);
     setResponse("");
     setIsLoading(true);
     setShowError(false);
 
     // submit openai prompt
     try {
-      const response = await submitPrompt(speech);
+      const response = await submitPrompt(speechInput);
       const formattedResult = JSON.parse(response.replace(/\n/g, ""));
       setResponse(formattedResult);
       setIsLoading(false);
@@ -100,7 +102,7 @@ function Input() {
           </button>
 
           {/* reset button */}
-          <button type="button" tabIndex="-1" onClick={reset} disabled={!speech}>
+          <button type="button" tabIndex="-1" onClick={reset} disabled={!speechInput}>
             reset
           </button>
         </div>
@@ -113,13 +115,13 @@ function Input() {
             tabIndex="1"
             type="text"
             className="word-input"
-            value={speech}
+            value={speechInput}
             placeholder="type something"
-            onChange={(e) => setSpeech(e.target.value)}
+            onChange={(e) => setSpeechInput(e.target.value)}
           />
 
           {/* submit button */}
-          <button type="submit" className="submit-btn" onClick={onSubmit} disabled={isLoading || !speech}>
+          <button type="submit" className="submit-btn" onClick={onSubmit} disabled={isLoading || !speechInput}>
             submit
           </button>
 
@@ -137,15 +139,21 @@ function Input() {
       {isLoading && <PropagateLoader color="#005277" className="loader" />}
 
       {/* response */}
-      <div className="response" ref={responseRef}>
-        <div
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(highlightWord(speech, response.definition)) }}
-        ></div>
-        <br />
-        <div
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(highlightWord(speech, response.example)) }}
-        ></div>
-      </div>
+      {response && (
+        <div className="response" ref={responseRef}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(highlightWord(speech, response.definition)),
+            }}
+          ></div>
+          <br />
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `"${DOMPurify.sanitize(highlightWord(speech, response.example))}"`,
+            }}
+          ></div>
+        </div>
+      )}
     </div>
   );
 }

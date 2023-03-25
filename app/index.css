@@ -65,7 +65,7 @@
   align-items: center;
   margin-top: 20px;
 }
-.app .main .input-component .word-input {
+.app .main .input-component .input-container .word-input {
   width: 95%;
   max-width: 300px;
   height: 40px;
@@ -78,11 +78,11 @@
   border-bottom: 2px solid #005277;
   font-family: "Lobster", sans-serif;
 }
-.app .main .input-component .word-input:focus {
+.app .main .input-component .input-container .word-input:focus {
   transform: scale(1.03);
   transition: transform 0.2s ease;
 }
-.app .main .input-component .word-input::placeholder {
+.app .main .input-component .input-container .word-input::placeholder {
   color: rgba(0, 81, 119, 0.2);
 }
 .app .main .input-component button {
@@ -123,6 +123,7 @@
 .app .main .response {
   margin-top: 50px;
   line-height: 1.5;
+  text-align: left;
 }
 .app .main .response::first-letter {
   text-transform: uppercase;
