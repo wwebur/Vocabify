@@ -152,7 +152,9 @@ var import_react2 = require("@remix-run/react");
 var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), meta = () => ({
   charset: "utf-8",
   title: "wordbot",
-  viewport: "width=device-width,initial-scale=1"
+  viewport: "width=device-width,initial-scale=1",
+  description: "Personal AI-powered vocabulary teacher.",
+  "og:image": "https://wordbot.vercel.app/social.png"
 }), loader = async ({ request }) => ({
   ENV: getEnv()
 });
@@ -162,53 +164,53 @@ function App() {
     /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("head", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Meta, {}, void 0, !1, {
         fileName: "app/root.jsx",
-        lineNumber: 24,
+        lineNumber: 25,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Links, {}, void 0, !1, {
         fileName: "app/root.jsx",
-        lineNumber: 25,
+        lineNumber: 26,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.jsx",
-      lineNumber: 23,
+      lineNumber: 24,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("body", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Outlet, {}, void 0, !1, {
         fileName: "app/root.jsx",
-        lineNumber: 28,
+        lineNumber: 29,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.ScrollRestoration, {}, void 0, !1, {
         fileName: "app/root.jsx",
-        lineNumber: 29,
+        lineNumber: 30,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Scripts, {}, void 0, !1, {
         fileName: "app/root.jsx",
-        lineNumber: 30,
+        lineNumber: 31,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("script", { dangerouslySetInnerHTML: { __html: `window.ENV=${JSON.stringify(data.ENV)}` } }, void 0, !1, {
         fileName: "app/root.jsx",
-        lineNumber: 31,
+        lineNumber: 32,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.LiveReload, {}, void 0, !1, {
         fileName: "app/root.jsx",
-        lineNumber: 32,
+        lineNumber: 33,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.jsx",
-      lineNumber: 27,
+      lineNumber: 28,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/root.jsx",
-    lineNumber: 22,
+    lineNumber: 23,
     columnNumber: 5
   }, this);
 }
@@ -435,31 +437,31 @@ function Index() {
   }, []), isReady ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "app", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "header", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: "wordbot" }, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 52,
+      lineNumber: 51,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 51,
+      lineNumber: 50,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "main", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Input_default, {}, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 56,
+      lineNumber: 55,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 55,
+      lineNumber: 54,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/index.jsx",
-    lineNumber: 50,
+    lineNumber: 49,
     columnNumber: 5
   }, this) : null;
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "e562d597", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-TSJOV2BX.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-KIJQL4FV.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-E562D597.js" };
+var assets_manifest_default = { version: "11de4783", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-3WJZNOLC.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-VME4Z6KN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-11DE4783.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

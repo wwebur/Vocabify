@@ -36,7 +36,6 @@ export function links() {
 
 export default function Index() {
   const [isReady, setIsReady] = useState(false);
-  // console.log(ENV);
 
   useEffect(() => {
     setIsReady(true);

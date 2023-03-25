@@ -5,11 +5,12 @@ export const meta = () => ({
   charset: "utf-8",
   title: "wordbot",
   viewport: "width=device-width,initial-scale=1",
+  description: "Personal AI-powered vocabulary teacher.",
+  "og:image": "https://wordbot.vercel.app/social.png",
 });
 
-// write remix LoaderFunction
+// expose environment variables to the client.
 export const loader = async ({ request }) => {
-  // console.log(ENV);
   return {
     ENV: getEnv(),
   };
