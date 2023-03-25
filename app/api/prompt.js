@@ -56,7 +56,7 @@ export default async function submitPrompt(word = "") {
 function generatePrompt(word) {
   return `Define the word ${word}. Then give me an example of its use in a sentence. Use proper grammar and punctuation. 
   
-  Return in json format like: {"definition": "<definition>", "example": "<example>"}`;
+  Return in json format like: {"definition": "<definition>", "example": "Example: <example>"}`;
 }
 // Word: Quixotic.Definition: Having or showing ideas, plans, etc., that are not practical or sensible, but   that are hoped for and believed in anyway.
 // Example: He had a quixotic plan to build a time machine.`;

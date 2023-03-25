@@ -3,6 +3,8 @@ import "regenerator-runtime";
 import { createSpeechlySpeechRecognition } from "@speechly/speech-recognition-polyfill";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import submitPrompt from "../../api/prompt";
+import BarLoader from "react-spinners/BarLoader";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 // use speechly polyfill for browser support
 const appId = "c95dfa5c-ef43-437c-8400-f64515f67846";
@@ -49,24 +51,46 @@ function Input() {
     setSpeech("");
     setResponse("");
     resetTranscript();
+    SpeechRecognition.stopListening();
   }
 
   // Return a JSX element that displays the speech and a button to start listening
   return (
-    <div>
-      {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
-      <button onClick={SpeechRecognition.startListening} disabled={listening}>
-        Start
-      </button>
-      {/* <button onClick={SpeechRecognition.stopListening} disabled={!listening}>
+    <div className="input">
+      <h2>gimme a word.</h2>
+
+      <div>
+        <button onClick={SpeechRecognition.startListening} disabled={listening}>
+          record
+        </button>
+        {/* <button onClick={SpeechRecognition.stopListening} disabled={!listening}>
         Stop
       </button> */}
-      <button onClick={reset} disabled={!speech}>
-        Reset
-      </button>
+        <button onClick={reset} disabled={!speech}>
+          reset
+        </button>
+      </div>
 
-      <p>{speech}</p>
-      {isLoading ? <div>loading...</div> : <button onClick={onSubmit}>Submit</button>}
+      {listening && <div className="listening">listening...</div>}
+
+      <div className="input-container">
+        <div className="word">
+          <input
+            type="text"
+            className="word-input"
+            value={speech}
+            onChange={(e) => setSpeech(e.target.value)}
+          />
+        </div>
+        <button className="submit-btn" onClick={onSubmit} disabled={isLoading || !speech}>
+          submit
+        </button>
+      </div>
+
+      {/* {isLoading && <BarLoader color="#36d7b7" />} */}
+      {/* <PacmanLoader color="#484848" /> */}
+
+      {isLoading && <div className="loading">loading...</div>}
 
       <div className="response">{response.definition}</div>
       <br />

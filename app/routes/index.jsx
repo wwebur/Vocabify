@@ -20,7 +20,6 @@ export default function Index() {
       </div>
 
       <div className="main">
-        <h2>gimme a word.</h2>
         <Input />
       </div>
     </div>

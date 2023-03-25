@@ -1,15 +1,146 @@
-// import Montserrat font and create fontface
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+// normalize.css
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
+// Montserrat font
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&display=swap");
 
 @font-face {
-  font-family: Montserrat;
-  src: url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+  font-family: "Montserrat";
+  src: url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&display=swap");
+  font-weight: normal;
+  font-style: normal;
 }
 
+// Lobster font
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+@font-face {
+  font-family: "Lobster";
+  src: url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$blue: rgb(0, 82, 119);
+
 * {
-  font-family: Montserrat, sans-serif;
+  color: $blue;
+  font-weight: bold;
 }
 
 .app {
-  margin: 100px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
+  margin: 50px;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    font-family: "Lobster", sans-serif;
+
+    h1 {
+      font-size: 72px;
+      margin: 0;
+    }
+
+    &.is-loading {
+      height: 100vh;
+      margin-top: 0;
+    }
+  }
+
+  .main {
+    // font-size: 32px;
+    line-height: 2em;
+    color: #353740;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+      width: 130px;
+    }
+
+    .input {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .word-input {
+        width: 100%;
+        max-width: 200px;
+        height: 40px;
+      }
+
+      .input-container {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .word {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .word-input {
+        padding: 20px 20px 5px;
+        font-size: 42px;
+        border: none;
+        border-bottom: 2px solid $blue;
+        font-family: "Lobster", sans-serif;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #0078d48c;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        margin-left: 10px;
+        height: 40px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: $blue;
+        }
+
+        &:disabled {
+          background-color: #006fc3b4;
+          // color: #666;
+          cursor: not-allowed;
+        }
+      }
+
+      .listening,
+      .loading {
+        margin-top: 20px;
+      }
+    }
+
+    .response {
+      margin-top: 50px;
+    }
+  }
+}
+
+// mobile
+@media screen and (max-width: 650px) {
+  .input-container {
+    flex-direction: column;
+
+    .submit-btn {
+      margin-top: 20px;
+    };
+  }
 }
