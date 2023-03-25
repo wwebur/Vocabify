@@ -1,0 +1,5 @@
+export function getEnv() {
+  return {
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+  };
+}
