@@ -13,7 +13,7 @@ function Input() {
 //   console.log(ENV);
 
   // Use a state variable to store the user's speech
-  const [speech, setSpeech] = useState("");
+  const [speech, setSpeech] = useState("hibernation");
   const [response, setResponse] = useState("");
 
   // Use the useSpeechRecognition hook to get the transcript and resetTranscript functions
