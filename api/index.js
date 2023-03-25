@@ -232,13 +232,12 @@ async function submitPrompt(word = "") {
     if (word.trim().length === 0)
       return Promise.reject({ message: "Please enter a valid word" });
     try {
-      let completion = await openai.createCompletion({
+      return (await openai.createCompletion({
         model: "text-davinci-003",
         prompt: generatePrompt(word),
         temperature: 0.3,
         max_tokens: 3e3
-      });
-      return console.log(completion.data.choices[0]), completion.data.choices[0].text;
+      })).data.choices[0].text;
     } catch (error) {
       error.response ? console.error(error.response.status, error.response.data) : console.error(`Error with OpenAI API request: ${error.message}`);
     }
@@ -254,8 +253,9 @@ function generatePrompt(word) {
 var import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), appId = "c95dfa5c-ef43-437c-8400-f64515f67846", SpeechlySpeechRecognition = (0, import_speech_recognition_polyfill.createSpeechlySpeechRecognition)(appId);
 import_react_speech_recognition.default.applyPolyfill(SpeechlySpeechRecognition);
 function Input() {
-  let [speech, setSpeech] = (0, import_react3.useState)("hibernation"), [response, setResponse] = (0, import_react3.useState)(""), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
+  let [speech, setSpeech] = (0, import_react3.useState)("hibernation"), [response, setResponse] = (0, import_react3.useState)(""), [isLoading, setIsLoading] = (0, import_react3.useState)(!1), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
   if ((0, import_react3.useEffect)(() => {
+    transcript && (setSpeech(transcript), import_react_speech_recognition.default.stopListening());
   }, [transcript]), !browserSupportsSpeechRecognition)
     return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("span", { children: "Browser doesn't support speech recognition." }, void 0, !1, {
       fileName: "app/components/input/Input.js",
@@ -263,66 +263,60 @@ function Input() {
       columnNumber: 12
     }, this);
   async function onSubmit() {
-    setResponse("");
+    setResponse(""), setIsLoading(!0);
     try {
       let response2 = await submitPrompt(speech), formattedResult = JSON.parse(response2.replace(/\n/g, ""));
-      setResponse(formattedResult);
+      setResponse(formattedResult), setIsLoading(!1);
     } catch (error) {
-      console.error(error);
+      console.error(error), setIsLoading(!1);
     }
   }
+  function reset() {
+    setSpeech(""), setResponse(""), resetTranscript();
+  }
   return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("p", { children: [
-      "Microphone: ",
-      listening ? "on" : "off"
-    ] }, void 0, !0, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 50,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: () => import_react_speech_recognition.default.startListening(), children: "Start" }, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 51,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: import_react_speech_recognition.default.stopListening, children: "Stop" }, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 52,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: resetTranscript, children: "Reset" }, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 53,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("p", { children: speech }, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 55,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: onSubmit, children: "Submit" }, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 56,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "response", children: response.definition }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: import_react_speech_recognition.default.startListening, disabled: listening, children: "Start" }, void 0, !1, {
       fileName: "app/components/input/Input.js",
       lineNumber: 58,
       columnNumber: 7
     }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: reset, disabled: !speech, children: "Reset" }, void 0, !1, {
+      fileName: "app/components/input/Input.js",
+      lineNumber: 64,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("p", { children: speech }, void 0, !1, {
+      fileName: "app/components/input/Input.js",
+      lineNumber: 68,
+      columnNumber: 7
+    }, this),
+    isLoading ? /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: "loading..." }, void 0, !1, {
+      fileName: "app/components/input/Input.js",
+      lineNumber: 69,
+      columnNumber: 20
+    }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: onSubmit, children: "Submit" }, void 0, !1, {
+      fileName: "app/components/input/Input.js",
+      lineNumber: 69,
+      columnNumber: 44
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "response", children: response.definition }, void 0, !1, {
+      fileName: "app/components/input/Input.js",
+      lineNumber: 71,
+      columnNumber: 7
+    }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("br", {}, void 0, !1, {
       fileName: "app/components/input/Input.js",
-      lineNumber: 59,
+      lineNumber: 72,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "response", children: response.example }, void 0, !1, {
       fileName: "app/components/input/Input.js",
-      lineNumber: 60,
+      lineNumber: 73,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/components/input/Input.js",
-    lineNumber: 49,
+    lineNumber: 56,
     columnNumber: 5
   }, this);
 }
@@ -376,7 +370,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "54799e7c", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-TSJOV2BX.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-DJMEC676.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-54799E7C.js" };
+var assets_manifest_default = { version: "548c526f", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-TSJOV2BX.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-SSKXH4QX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-548C526F.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

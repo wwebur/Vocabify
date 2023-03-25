@@ -34,7 +34,7 @@ export default async function submitPrompt(word = "") {
       max_tokens: 3000,
     });
 
-    console.log(completion.data.choices[0]);
+    // console.log(completion.data.choices[0]);
     return completion.data.choices[0].text;
     // res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
