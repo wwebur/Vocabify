@@ -9,7 +9,7 @@ export const meta = () => ({
 
 // write remix LoaderFunction
 export const loader = async ({ request }) => {
-  console.log(ENV);
+  // console.log(ENV);
   return {
     ENV: getEnv(),
   };

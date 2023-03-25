@@ -153,7 +153,7 @@ var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), meta = () => ({
   charset: "utf-8",
   title: "wordbot",
   viewport: "width=device-width,initial-scale=1"
-}), loader = async ({ request }) => (console.log(ENV), {
+}), loader = async ({ request }) => ({
   ENV: getEnv()
 });
 function App() {
@@ -245,7 +245,8 @@ async function submitPrompt(word = "") {
   }
 }
 function generatePrompt(word) {
-  return `Define the word ${word}. Then give me an example of its use in a sentence.
+  return `Define the word ${word}. Then give me an example of its use in a sentence. Use proper grammar and punctuation. 
+  
   Return in json format like: {"definition": "<definition>", "example": "<example>"}`;
 }
 
@@ -253,9 +254,8 @@ function generatePrompt(word) {
 var import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), appId = "c95dfa5c-ef43-437c-8400-f64515f67846", SpeechlySpeechRecognition = (0, import_speech_recognition_polyfill.createSpeechlySpeechRecognition)(appId);
 import_react_speech_recognition.default.applyPolyfill(SpeechlySpeechRecognition);
 function Input() {
-  let [speech, setSpeech] = (0, import_react3.useState)(""), [response, setResponse] = (0, import_react3.useState)(""), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
+  let [speech, setSpeech] = (0, import_react3.useState)("hibernation"), [response, setResponse] = (0, import_react3.useState)(""), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
   if ((0, import_react3.useEffect)(() => {
-    setSpeech(transcript);
   }, [transcript]), !browserSupportsSpeechRecognition)
     return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("span", { children: "Browser doesn't support speech recognition." }, void 0, !1, {
       fileName: "app/components/input/Input.js",
@@ -376,7 +376,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "6477e9ac", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-ALJQJHJY.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-S2OKFXWI.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-6477E9AC.js" };
+var assets_manifest_default = { version: "54799e7c", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-TSJOV2BX.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-DJMEC676.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-54799E7C.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

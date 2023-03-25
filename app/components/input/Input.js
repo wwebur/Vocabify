@@ -21,7 +21,7 @@ function Input() {
 
   // Update the speech state variable whenever the transcript changes
   useEffect(() => {
-    setSpeech(transcript);
+    // setSpeech(transcript);
   }, [transcript]);
 
   if (!browserSupportsSpeechRecognition) {
