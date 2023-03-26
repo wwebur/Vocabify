@@ -61,6 +61,7 @@ function Input() {
 
   function reset() {
     setSpeech("");
+    setSpeechInput("");
     setResponse("");
     resetTranscript();
     SpeechRecognition.stopListening();
@@ -121,7 +122,12 @@ function Input() {
           />
 
           {/* submit button */}
-          <button type="submit" className="submit-btn" onClick={onSubmit} disabled={isLoading || !speechInput}>
+          <button
+            type="submit"
+            className="submit-btn"
+            onClick={onSubmit}
+            disabled={isLoading || !speechInput}
+          >
             submit
           </button>
 
