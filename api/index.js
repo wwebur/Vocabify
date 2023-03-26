@@ -257,7 +257,7 @@ import_react_speech_recognition.default.applyPolyfill(SpeechlySpeechRecognition)
 function Input() {
   let [isReady, setIsReady] = (0, import_react3.useState)(!1), [speech, setSpeech] = (0, import_react3.useState)(""), [speechInput, setSpeechInput] = (0, import_react3.useState)(""), [response, setResponse] = (0, import_react3.useState)(""), [isLoading, setIsLoading] = (0, import_react3.useState)(!1), [showError, setShowError] = (0, import_react3.useState)(""), responseRef = (0, import_react3.useRef)(), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
   (0, import_react3.useEffect)(() => {
-    transcript && (setSpeech(transcript), import_react_speech_recognition.default.stopListening());
+    transcript && (setSpeechInput(transcript), import_react_speech_recognition.default.stopListening());
   }, [transcript]), (0, import_react3.useEffect)(() => {
     response && responseRef.current.scrollIntoView({ behavior: "smooth" });
   }, [response]), (0, import_react3.useEffect)(() => {
@@ -505,7 +505,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "a87a648b", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-3WJZNOLC.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-AALURKVK.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-A87A648B.js" };
+var assets_manifest_default = { version: "49614e02", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-3WJZNOLC.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-ORB52M5T.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-49614E02.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

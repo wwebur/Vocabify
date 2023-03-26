@@ -24,7 +24,7 @@ function Input() {
   useEffect(() => {
     // when user says word, save word and turn off mic.
     if (transcript) {
-      setSpeech(transcript);
+      setSpeechInput(transcript);
       SpeechRecognition.stopListening();
     }
   }, [transcript]);
