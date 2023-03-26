@@ -283,7 +283,7 @@ function Input() {
   }
   return isReady ? browserSupportsSpeechRecognition ? /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "input-component", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("h2", { children: [
-      "give a word/phrase/whatever,",
+      "say or type a word/phrase/whatever,",
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("br", {}, void 0, !1, {
         fileName: "app/components/input/Input.js",
         lineNumber: 93,
@@ -297,7 +297,7 @@ function Input() {
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("form", { onSubmit, children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: [
-        !listening && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { type: "button", tabIndex: "-1", onClick: import_react_speech_recognition.default.startListening, children: "record" }, void 0, !1, {
+        !listening && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { type: "button", tabIndex: "-1", onClick: import_react_speech_recognition.default.startListening, children: "talk" }, void 0, !1, {
           fileName: "app/components/input/Input.js",
           lineNumber: 102,
           columnNumber: 13
@@ -510,7 +510,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "3eff2dc4", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-L5MWXLQO.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-CWXMMAR7.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-3EFF2DC4.js" };
+var assets_manifest_default = { version: "9f4a42d7", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-L5MWXLQO.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-MIIEH54T.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-9F4A42D7.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

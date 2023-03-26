@@ -89,7 +89,7 @@ function Input() {
   return (
     <div className="input-component">
       <h2>
-        give a word/phrase/whatever,
+        say or type a word/phrase/whatever,
         <br />
         get a definition and example.
       </h2>
@@ -100,7 +100,7 @@ function Input() {
           {/* record button */}
           {!listening && (
             <button type="button" tabIndex="-1" onClick={SpeechRecognition.startListening}>
-              record
+              talk
             </button>
           )}
 
