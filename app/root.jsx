@@ -3,14 +3,14 @@ import { getEnv } from "./env.server";
 
 export const meta = () => ({
   charset: "utf-8",
-  title: "wordbot",
+  title: "vocabify",
   viewport: "width=device-width,initial-scale=1",
   description: "Personal AI-powered vocabulary teacher.",
-  "og:image": "https://wordbot.vercel.app/social.png",
+  "og:image": "https://vocabify.vercel.app/social.png",
 });
 
 // expose environment variables to the client.
-export const loader = async ({ request }) => {
+export const loader = async () => {
   return {
     ENV: getEnv(),
   };

@@ -48,7 +48,7 @@ export default function Index() {
   return (
     <div className="app">
       <div className="header">
-        <h1>wordbot</h1>
+        <h1>vocabify</h1>
       </div>
 
       <div className="main">
