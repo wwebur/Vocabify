@@ -8,7 +8,7 @@
     "sass": "sass --watch app/:app/",
     "build:remix": "cross-env NODE_ENV=production remix build",
     "build:worker": "esbuild ./app/entry.worker.js --outfile=./public/entry.worker.js --minify --bundle --format=esm --define:process.env.NODE_ENV='\"production\"'",
-    "dev:remix": "cross-env NODE_ENV=development remix dev",
+    "dev:remix": "cross-env NODE_ENV=development concurrently \"npm run sass\" \"remix dev\"",
     "dev:worker": "esbuild ./app/entry.worker.js --outfile=./public/entry.worker.js --bundle --format=esm --define:process.env.NODE_ENV='\"development\"' --watch"
   },
   "dependencies": {
