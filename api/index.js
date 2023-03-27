@@ -1,3 +1,4 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -17,9 +18,17 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 )), __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: !0 }), mod);
 
-// <stdin>
-var stdin_exports = {};
-__export(stdin_exports, {
+// server.js
+var server_exports = {};
+__export(server_exports, {
+  default: () => server_default
+});
+module.exports = __toCommonJS(server_exports);
+var import_vercel = require("@remix-run/vercel");
+
+// server-entry-module:@remix-run/dev/server-build
+var server_build_exports = {};
+__export(server_build_exports, {
   assets: () => assets_manifest_default,
   assetsBuildDirectory: () => assetsBuildDirectory,
   entry: () => entry,
@@ -27,7 +36,6 @@ __export(stdin_exports, {
   publicPath: () => publicPath,
   routes: () => routes
 });
-module.exports = __toCommonJS(stdin_exports);
 
 // app/entry.server.jsx
 var entry_server_exports = {};
@@ -44,7 +52,7 @@ function getEnv() {
 }
 
 // app/entry.server.jsx
-var import_jsx_dev_runtime = require("react/jsx-dev-runtime");
+var import_jsx_runtime = require("react/jsx-runtime");
 global.ENV = getEnv();
 var ABORT_DELAY = 5e3;
 function handleRequest(request, responseStatusCode, responseHeaders, remixContext) {
@@ -63,21 +71,13 @@ function handleRequest(request, responseStatusCode, responseHeaders, remixContex
 function handleBotRequest(request, responseStatusCode, responseHeaders, remixContext) {
   return new Promise((resolve, reject) => {
     let { pipe, abort } = (0, import_server.renderToPipeableStream)(
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         import_react.RemixServer,
         {
           context: remixContext,
           url: request.url,
           abortDelay: ABORT_DELAY
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/entry.server.jsx",
-          lineNumber: 47,
-          columnNumber: 7
-        },
-        this
+        }
       ),
       {
         onAllReady() {
@@ -103,21 +103,13 @@ function handleBotRequest(request, responseStatusCode, responseHeaders, remixCon
 function handleBrowserRequest(request, responseStatusCode, responseHeaders, remixContext) {
   return new Promise((resolve, reject) => {
     let { pipe, abort } = (0, import_server.renderToPipeableStream)(
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         import_react.RemixServer,
         {
           context: remixContext,
           url: request.url,
           abortDelay: ABORT_DELAY
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/entry.server.jsx",
-          lineNumber: 90,
-          columnNumber: 7
-        },
-        this
+        }
       ),
       {
         onShellReady() {
@@ -188,7 +180,7 @@ function useSWEffect() {
 
 // app/root.jsx
 var import_react4 = require("@remix-run/react");
-var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), meta = () => ({
+var import_jsx_runtime2 = require("react/jsx-runtime"), meta = () => ({
   charset: "utf-8",
   title: "vocabify",
   viewport: "width=device-width,initial-scale=1",
@@ -197,77 +189,29 @@ var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), meta = () => ({
 }), loader = async () => ({ ENV: getEnv() });
 function App() {
   let data = (0, import_react4.useLoaderData)();
-  return useSWEffect(), /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("html", { lang: "en", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("head", { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Meta, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 20,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("link", { rel: "manifest", href: "/resources/manifest.webmanifest" }, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 21,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Links, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 22,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/root.jsx",
-      lineNumber: 19,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("body", { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Outlet, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 25,
-        columnNumber: 9
-      }, this),
+  return useSWEffect(), /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("html", { lang: "en", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("head", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react4.Meta, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("link", { rel: "manifest", href: "/resources/manifest.webmanifest" }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react4.Links, {})
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("body", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react4.Outlet, {}),
       " ",
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.ScrollRestoration, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 25,
-        columnNumber: 20
-      }, this),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react4.ScrollRestoration, {}),
       " ",
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Scripts, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 25,
-        columnNumber: 42
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react4.Scripts, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "script",
         {
           dangerouslySetInnerHTML: {
             __html: `window.ENV=${JSON.stringify(data.ENV)}`
           }
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/root.jsx",
-          lineNumber: 26,
-          columnNumber: 9
-        },
-        this
+        }
       ),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.LiveReload, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 31,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/root.jsx",
-      lineNumber: 24,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/root.jsx",
-    lineNumber: 18,
-    columnNumber: 5
-  }, this);
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react4.LiveReload, {})
+    ] })
+  ] });
 }
 
 // app/routes/resources/manifest[.]webmanifest.js
@@ -277,8 +221,8 @@ __export(manifest_webmanifest_exports, {
 });
 var import_node2 = require("@remix-run/node"), loader2 = async () => (0, import_node2.json)(
   {
-    short_name: "PWA",
-    name: "Remix PWA",
+    short_name: "vocabify",
+    name: "vocabify",
     start_url: "/",
     display: "standalone",
     background_color: "#d3d7dd",
@@ -381,7 +325,7 @@ function generatePrompt(word) {
 }
 
 // app/components/input/Input.js
-var import_dompurify = __toESM(require("dompurify")), import_react_spinners = require("react-spinners"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), appId = "c95dfa5c-ef43-437c-8400-f64515f67846", SpeechlySpeechRecognition = (0, import_speech_recognition_polyfill.createSpeechlySpeechRecognition)(appId);
+var import_dompurify = __toESM(require("dompurify")), import_react_spinners = require("react-spinners"), import_jsx_runtime3 = require("react/jsx-runtime"), appId = "c95dfa5c-ef43-437c-8400-f64515f67846", SpeechlySpeechRecognition = (0, import_speech_recognition_polyfill.createSpeechlySpeechRecognition)(appId);
 import_react_speech_recognition.default.applyPolyfill(SpeechlySpeechRecognition);
 function Input() {
   let [isReady, setIsReady] = (0, import_react5.useState)(!1), [speech, setSpeech] = (0, import_react5.useState)(""), [speechInput, setSpeechInput] = (0, import_react5.useState)(""), [response, setResponse] = (0, import_react5.useState)(""), [isLoading, setIsLoading] = (0, import_react5.useState)(!1), [showError, setShowError] = (0, import_react5.useState)(""), responseRef = (0, import_react5.useRef)(), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
@@ -410,49 +354,21 @@ function Input() {
     let regex = new RegExp(word, "gi");
     return string.replace(regex, `<b>${word}</b>`);
   }
-  return isReady ? browserSupportsSpeechRecognition ? /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "input-component", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("h2", { children: [
+  return isReady ? browserSupportsSpeechRecognition ? /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "input-component", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("h2", { children: [
       "say or type a word/phrase/whatever,",
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("br", {}, void 0, !1, {
-        fileName: "app/components/input/Input.js",
-        lineNumber: 93,
-        columnNumber: 9
-      }, this),
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("br", {}),
       "get a definition and example."
-    ] }, void 0, !0, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 91,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("form", { onSubmit, children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: [
-        !listening && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { type: "button", tabIndex: "-1", onClick: import_react_speech_recognition.default.startListening, children: "talk" }, void 0, !1, {
-          fileName: "app/components/input/Input.js",
-          lineNumber: 102,
-          columnNumber: 13
-        }, this),
-        listening && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { type: "button", tabIndex: "-1", onClick: import_react_speech_recognition.default.stopListening, children: "stop" }, void 0, !1, {
-          fileName: "app/components/input/Input.js",
-          lineNumber: 109,
-          columnNumber: 13
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { type: "button", tabIndex: "-1", onClick: reset, disabled: !speechInput, children: "reset" }, void 0, !1, {
-          fileName: "app/components/input/Input.js",
-          lineNumber: 115,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/components/input/Input.js",
-        lineNumber: 99,
-        columnNumber: 9
-      }, this),
-      listening && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "listening", children: "listening..." }, void 0, !1, {
-        fileName: "app/components/input/Input.js",
-        lineNumber: 120,
-        columnNumber: 23
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "input-container", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("form", { onSubmit, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { children: [
+        !listening && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { type: "button", tabIndex: "-1", onClick: import_react_speech_recognition.default.startListening, children: "talk" }),
+        listening && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { type: "button", tabIndex: "-1", onClick: import_react_speech_recognition.default.stopListening, children: "stop" }),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { type: "button", tabIndex: "-1", onClick: reset, disabled: !speechInput, children: "reset" })
+      ] }),
+      listening && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "listening", children: "listening..." }),
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "input-container", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
           "input",
           {
             tabIndex: "1",
@@ -461,17 +377,9 @@ function Input() {
             value: speechInput,
             placeholder: "type something",
             onChange: (e) => setSpeechInput(e.target.value)
-          },
-          void 0,
-          !1,
-          {
-            fileName: "app/components/input/Input.js",
-            lineNumber: 124,
-            columnNumber: 11
-          },
-          this
+          }
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
           "button",
           {
             type: "submit",
@@ -479,104 +387,44 @@ function Input() {
             onClick: onSubmit,
             disabled: isLoading || !speechInput,
             children: "submit"
-          },
-          void 0,
-          !1,
-          {
-            fileName: "app/components/input/Input.js",
-            lineNumber: 134,
-            columnNumber: 11
-          },
-          this
+          }
         ),
-        showError && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "error", children: [
+        showError && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "error", children: [
           "Something went wrong :( ",
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("br", {}, void 0, !1, {
-            fileName: "app/components/input/Input.js",
-            lineNumber: 146,
-            columnNumber: 39
-          }, this),
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("br", {}),
           "Please try again."
-        ] }, void 0, !0, {
-          fileName: "app/components/input/Input.js",
-          lineNumber: 145,
-          columnNumber: 13
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/components/input/Input.js",
-        lineNumber: 122,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 98,
-      columnNumber: 7
-    }, this),
-    isLoading && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_react_spinners.PropagateLoader, { color: "#005277", className: "loader" }, void 0, !1, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 154,
-      columnNumber: 21
-    }, this),
-    response && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "response", ref: responseRef, children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+        ] })
+      ] })
+    ] }),
+    isLoading && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_react_spinners.PropagateLoader, { color: "#005277", className: "loader" }),
+    response && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "response", ref: responseRef, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
         "div",
         {
           dangerouslySetInnerHTML: {
             __html: import_dompurify.default.sanitize(highlightWord(speech, response.definition))
           }
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/components/input/Input.js",
-          lineNumber: 159,
-          columnNumber: 11
-        },
-        this
+        }
       ),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("br", {}, void 0, !1, {
-        fileName: "app/components/input/Input.js",
-        lineNumber: 164,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("br", {}),
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
         "div",
         {
           dangerouslySetInnerHTML: {
             __html: `"${import_dompurify.default.sanitize(highlightWord(speech, response.example))}"`
           }
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/components/input/Input.js",
-          lineNumber: 165,
-          columnNumber: 11
-        },
-        this
+        }
       )
-    ] }, void 0, !0, {
-      fileName: "app/components/input/Input.js",
-      lineNumber: 158,
-      columnNumber: 9
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/components/input/Input.js",
-    lineNumber: 90,
-    columnNumber: 5
-  }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("span", { children: "Browser doesn't support speech recognition." }, void 0, !1, {
-    fileName: "app/components/input/Input.js",
-    lineNumber: 86,
-    columnNumber: 12
-  }, this) : null;
+    ] })
+  ] }) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: "Browser doesn't support speech recognition." }) : null;
 }
 var Input_default = Input;
 
 // app/index.css
-var app_default = "/build/_assets/index-CGPFZ4G7.css";
+var app_default = "/build/_assets/index-GPYPO7OW.css";
 
 // app/routes/index.jsx
-var import_react6 = require("react"), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
+var import_react6 = require("react"), import_jsx_runtime4 = require("react/jsx-runtime");
 function links() {
   return [
     {
@@ -612,34 +460,14 @@ function Index() {
   let [isReady, setIsReady] = (0, import_react6.useState)(!1);
   return (0, import_react6.useEffect)(() => {
     setIsReady(!0);
-  }, []), isReady ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "app", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "header", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: "vocabify" }, void 0, !1, {
-      fileName: "app/routes/index.jsx",
-      lineNumber: 51,
-      columnNumber: 9
-    }, this) }, void 0, !1, {
-      fileName: "app/routes/index.jsx",
-      lineNumber: 50,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "main", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Input_default, {}, void 0, !1, {
-      fileName: "app/routes/index.jsx",
-      lineNumber: 55,
-      columnNumber: 9
-    }, this) }, void 0, !1, {
-      fileName: "app/routes/index.jsx",
-      lineNumber: 54,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/routes/index.jsx",
-    lineNumber: 49,
-    columnNumber: 5
-  }, this) : null;
+  }, []), isReady ? /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "app", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "header", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { children: "vocabify" }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "main", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Input_default, {}) })
+  ] }) : null;
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "045178eb", entry: { module: "/build/entry.client-HP5ZXVQM.js", imports: ["/build/_shared/chunk-DEMPFQNT.js", "/build/_shared/chunk-FN3KWL4V.js", "/build/_shared/chunk-4IYZMDEG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-DSAQHILR.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-JVFBICJ6.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/resources/manifest[.]webmanifest": { id: "routes/resources/manifest[.]webmanifest", parentId: "root", path: "resources/manifest.webmanifest", index: void 0, caseSensitive: void 0, module: "/build/routes/resources/manifest[.]webmanifest-B7J2LRZ4.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-045178EB.js" };
+var assets_manifest_default = { version: "cc850e37", entry: { module: "/build/entry.client-IANMSCRX.js", imports: ["/build/_shared/chunk-SMRQ4EEP.js", "/build/_shared/chunk-5HKR6QTR.js", "/build/_shared/chunk-G5WX4PPA.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-VOJIHQN3.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-UITXA4BT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/resources/manifest[.]webmanifest": { id: "routes/resources/manifest[.]webmanifest", parentId: "root", path: "resources/manifest.webmanifest", index: void 0, caseSensitive: void 0, module: "/build/routes/resources/manifest[.]webmanifest-6FW753FO.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-CC850E37.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -668,13 +496,8 @@ var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, 
     module: routes_exports
   }
 };
+
+// server.js
+var server_default = (0, import_vercel.createRequestHandler)({ build: server_build_exports, mode: "production" });
 // Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  assets,
-  assetsBuildDirectory,
-  entry,
-  future,
-  publicPath,
-  routes
-});
-//# sourceMappingURL=index.js.map
+0 && (module.exports = {});
