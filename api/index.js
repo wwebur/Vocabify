@@ -148,72 +148,201 @@ __export(root_exports, {
   loader: () => loader,
   meta: () => meta
 });
-var import_react2 = require("@remix-run/react");
+
+// app/utils/client/sw-hook.js
+var import_react2 = require("@remix-run/react"), import_react3 = require("react"), isMount = !0;
+function useSWEffect() {
+  let location = (0, import_react2.useLocation)(), matches = (0, import_react2.useMatches)();
+  function isPromise(p) {
+    return typeof p == "object" && typeof p.then == "function";
+  }
+  (0, import_react3.useEffect)(() => {
+    var _a;
+    let mounted = isMount;
+    if (isMount = !1, "serviceWorker" in navigator)
+      if (navigator.serviceWorker.controller)
+        (_a = navigator.serviceWorker.controller) == null || _a.postMessage({
+          type: "REMIX_NAVIGATION",
+          isMount: mounted,
+          location,
+          matches: matches.filter((route) => route.data ? Object.values(route.data).filter((elem) => isPromise(elem)).length === 0 : !0),
+          manifest: window.__remixManifest
+        });
+      else {
+        let listener = async () => {
+          var _a2;
+          await navigator.serviceWorker.ready, (_a2 = navigator.serviceWorker.controller) == null || _a2.postMessage({
+            type: "REMIX_NAVIGATION",
+            isMount: mounted,
+            location,
+            matches: matches.filter((route) => route.data ? Object.values(route.data).filter((elem) => isPromise(elem)).length === 0 : !0),
+            manifest: window.__remixManifest
+          });
+        };
+        return navigator.serviceWorker.addEventListener("controllerchange", listener), () => {
+          navigator.serviceWorker.removeEventListener("controllerchange", listener);
+        };
+      }
+  }, [location, matches]);
+}
+
+// app/root.jsx
+var import_react4 = require("@remix-run/react");
 var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), meta = () => ({
   charset: "utf-8",
   title: "vocabify",
   viewport: "width=device-width,initial-scale=1",
   description: "Personal AI-powered vocabulary teacher.",
   "og:image": "https://vocabify.vercel.app/social.png"
-}), loader = async () => ({
-  ENV: getEnv()
-});
+}), loader = async () => ({ ENV: getEnv() });
 function App() {
-  let data = (0, import_react2.useLoaderData)();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("html", { lang: "en", children: [
+  let data = (0, import_react4.useLoaderData)();
+  return useSWEffect(), /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("html", { lang: "en", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("head", { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Meta, {}, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Meta, {}, void 0, !1, {
+        fileName: "app/root.jsx",
+        lineNumber: 20,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("link", { rel: "manifest", href: "/resources/manifest.webmanifest" }, void 0, !1, {
+        fileName: "app/root.jsx",
+        lineNumber: 21,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Links, {}, void 0, !1, {
+        fileName: "app/root.jsx",
+        lineNumber: 22,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/root.jsx",
+      lineNumber: 19,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("body", { children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Outlet, {}, void 0, !1, {
         fileName: "app/root.jsx",
         lineNumber: 25,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Links, {}, void 0, !1, {
+      " ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.ScrollRestoration, {}, void 0, !1, {
         fileName: "app/root.jsx",
-        lineNumber: 26,
+        lineNumber: 25,
+        columnNumber: 20
+      }, this),
+      " ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Scripts, {}, void 0, !1, {
+        fileName: "app/root.jsx",
+        lineNumber: 25,
+        columnNumber: 42
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(
+        "script",
+        {
+          dangerouslySetInnerHTML: {
+            __html: `window.ENV=${JSON.stringify(data.ENV)}`
+          }
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/root.jsx",
+          lineNumber: 26,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.LiveReload, {}, void 0, !1, {
+        fileName: "app/root.jsx",
+        lineNumber: 31,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.jsx",
       lineNumber: 24,
       columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("body", { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Outlet, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 29,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.ScrollRestoration, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 30,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Scripts, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 31,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("script", { dangerouslySetInnerHTML: { __html: `window.ENV=${JSON.stringify(data.ENV)}` } }, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 32,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.LiveReload, {}, void 0, !1, {
-        fileName: "app/root.jsx",
-        lineNumber: 33,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/root.jsx",
-      lineNumber: 28,
-      columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/root.jsx",
-    lineNumber: 23,
+    lineNumber: 18,
     columnNumber: 5
   }, this);
 }
+
+// app/routes/resources/manifest[.]webmanifest.js
+var manifest_webmanifest_exports = {};
+__export(manifest_webmanifest_exports, {
+  loader: () => loader2
+});
+var import_node2 = require("@remix-run/node"), loader2 = async () => (0, import_node2.json)(
+  {
+    short_name: "PWA",
+    name: "Remix PWA",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#d3d7dd",
+    theme_color: "#c34138",
+    shortcuts: [
+      {
+        name: "Homepage",
+        url: "/",
+        icons: [
+          {
+            src: "/icons/android-icon-96x96.png",
+            sizes: "96x96",
+            type: "image/png",
+            purpose: "any monochrome"
+          }
+        ]
+      }
+    ],
+    icons: [
+      {
+        src: "/icons/android-icon-36x36.png",
+        sizes: "36x36",
+        type: "image/png",
+        density: "0.75"
+      },
+      {
+        src: "/icons/android-icon-48x48.png",
+        sizes: "48x48",
+        type: "image/png",
+        density: "1.0"
+      },
+      {
+        src: "/icons/android-icon-72x72.png",
+        sizes: "72x72",
+        type: "image/png",
+        density: "1.5"
+      },
+      {
+        src: "/icons/android-icon-96x96.png",
+        sizes: "96x96",
+        type: "image/png",
+        density: "2.0"
+      },
+      {
+        src: "/icons/android-icon-144x144.png",
+        sizes: "144x144",
+        type: "image/png",
+        density: "3.0"
+      },
+      {
+        src: "/icons/android-icon-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+        density: "4.0"
+      }
+    ]
+  },
+  {
+    headers: {
+      "Cache-Control": "public, max-age=600",
+      "Content-Type": "application/manifest+json"
+    }
+  }
+);
 
 // app/routes/index.jsx
 var routes_exports = {};
@@ -223,7 +352,7 @@ __export(routes_exports, {
 });
 
 // app/components/input/Input.js
-var import_react3 = require("react"), import_regenerator_runtime = require("regenerator-runtime"), import_speech_recognition_polyfill = require("@speechly/speech-recognition-polyfill"), import_react_speech_recognition = __toESM(require("react-speech-recognition"));
+var import_react5 = require("react"), import_regenerator_runtime = require("regenerator-runtime"), import_speech_recognition_polyfill = require("@speechly/speech-recognition-polyfill"), import_react_speech_recognition = __toESM(require("react-speech-recognition"));
 
 // app/api/prompt.js
 var import_openai = require("openai"), configuration = new import_openai.Configuration({
@@ -255,12 +384,12 @@ function generatePrompt(word) {
 var import_dompurify = __toESM(require("dompurify")), import_react_spinners = require("react-spinners"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), appId = "c95dfa5c-ef43-437c-8400-f64515f67846", SpeechlySpeechRecognition = (0, import_speech_recognition_polyfill.createSpeechlySpeechRecognition)(appId);
 import_react_speech_recognition.default.applyPolyfill(SpeechlySpeechRecognition);
 function Input() {
-  let [isReady, setIsReady] = (0, import_react3.useState)(!1), [speech, setSpeech] = (0, import_react3.useState)(""), [speechInput, setSpeechInput] = (0, import_react3.useState)(""), [response, setResponse] = (0, import_react3.useState)(""), [isLoading, setIsLoading] = (0, import_react3.useState)(!1), [showError, setShowError] = (0, import_react3.useState)(""), responseRef = (0, import_react3.useRef)(), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
-  (0, import_react3.useEffect)(() => {
+  let [isReady, setIsReady] = (0, import_react5.useState)(!1), [speech, setSpeech] = (0, import_react5.useState)(""), [speechInput, setSpeechInput] = (0, import_react5.useState)(""), [response, setResponse] = (0, import_react5.useState)(""), [isLoading, setIsLoading] = (0, import_react5.useState)(!1), [showError, setShowError] = (0, import_react5.useState)(""), responseRef = (0, import_react5.useRef)(), { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = (0, import_react_speech_recognition.useSpeechRecognition)();
+  (0, import_react5.useEffect)(() => {
     transcript && (setSpeechInput(transcript), import_react_speech_recognition.default.stopListening());
-  }, [transcript]), (0, import_react3.useEffect)(() => {
+  }, [transcript]), (0, import_react5.useEffect)(() => {
     response && responseRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [response]), (0, import_react3.useEffect)(() => {
+  }, [response]), (0, import_react5.useEffect)(() => {
     setIsReady(!0);
   }, []);
   async function onSubmit(e) {
@@ -447,7 +576,7 @@ var Input_default = Input;
 var app_default = "/build/_assets/index-CGPFZ4G7.css";
 
 // app/routes/index.jsx
-var import_react4 = require("react"), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
+var import_react6 = require("react"), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
 function links() {
   return [
     {
@@ -480,8 +609,8 @@ function links() {
   ];
 }
 function Index() {
-  let [isReady, setIsReady] = (0, import_react4.useState)(!1);
-  return (0, import_react4.useEffect)(() => {
+  let [isReady, setIsReady] = (0, import_react6.useState)(!1);
+  return (0, import_react6.useEffect)(() => {
     setIsReady(!0);
   }, []), isReady ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "app", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "header", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: "vocabify" }, void 0, !1, {
@@ -510,7 +639,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "9f4a42d7", entry: { module: "/build/entry.client-QMNOJLGV.js", imports: ["/build/_shared/chunk-NGYIO6PS.js", "/build/_shared/chunk-56THQXCK.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-L5MWXLQO.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-MIIEH54T.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-9F4A42D7.js" };
+var assets_manifest_default = { version: "045178eb", entry: { module: "/build/entry.client-HP5ZXVQM.js", imports: ["/build/_shared/chunk-DEMPFQNT.js", "/build/_shared/chunk-FN3KWL4V.js", "/build/_shared/chunk-4IYZMDEG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-DSAQHILR.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-JVFBICJ6.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/resources/manifest[.]webmanifest": { id: "routes/resources/manifest[.]webmanifest", parentId: "root", path: "resources/manifest.webmanifest", index: void 0, caseSensitive: void 0, module: "/build/routes/resources/manifest[.]webmanifest-B7J2LRZ4.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-045178EB.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -521,6 +650,14 @@ var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, 
     index: void 0,
     caseSensitive: void 0,
     module: root_exports
+  },
+  "routes/resources/manifest[.]webmanifest": {
+    id: "routes/resources/manifest[.]webmanifest",
+    parentId: "root",
+    path: "resources/manifest.webmanifest",
+    index: void 0,
+    caseSensitive: void 0,
+    module: manifest_webmanifest_exports
   },
   "routes/index": {
     id: "routes/index",
