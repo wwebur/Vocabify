@@ -6,7 +6,8 @@
 
 @font-face {
   font-family: "Montserrat";
-  src: url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&display=swap");
+  src: url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&display=swap") format("woff2"),
+    url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&display=swap") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +17,8 @@
 
 @font-face {
   font-family: "Lobster";
-  src: url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+  src: url("https://fonts.googleapis.com/css2?family=Lobster&display=swap") format("woff2"),
+    url("https://fonts.googleapis.com/css2?family=Lobster&display=swap") format("woff");
   font-weight: normal;
   font-style: normal;
 }

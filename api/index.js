@@ -286,47 +286,7 @@ var import_node2 = require("@remix-run/node"), loader2 = async () => (0, import_
     shortcuts: [
       {
         name: "Homepage",
-        url: "/",
-        icons: [
-          {
-            src: "/android-icon-96x96.png",
-            sizes: "96x96",
-            type: "image/png",
-            purpose: "any monochrome"
-          }
-        ]
-      }
-    ],
-    icons: [
-      {
-        src: "/android-icon-36x36.png",
-        sizes: "36x36",
-        type: "image/png",
-        density: "0.75"
-      },
-      {
-        src: "/android-icon-48x48.png",
-        sizes: "48x48",
-        type: "image/png",
-        density: "1.0"
-      },
-      {
-        src: "/android-icon-72x72.png",
-        sizes: "72x72",
-        type: "image/png",
-        density: "1.5"
-      },
-      {
-        src: "/android-icon-96x96.png",
-        sizes: "96x96",
-        type: "image/png",
-        density: "2.0"
-      },
-      {
-        src: "/android-icon-192x192.png",
-        sizes: "192x192",
-        type: "image/png",
-        density: "4.0"
+        url: "/"
       }
     ]
   },
@@ -625,7 +585,7 @@ function Input() {
 var Input_default = Input;
 
 // app/index.css
-var app_default = "/build/_assets/index-W4F3ODD5.css";
+var app_default = "/build/_assets/index-Z6X3IVXO.css";
 
 // app/routes/index.jsx
 var import_react6 = require("react"), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
@@ -691,7 +651,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "cd609eac", entry: { module: "/build/entry.client-HP5ZXVQM.js", imports: ["/build/_shared/chunk-DEMPFQNT.js", "/build/_shared/chunk-FN3KWL4V.js", "/build/_shared/chunk-4IYZMDEG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-DSAQHILR.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-PLIKVAHR.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/resources/manifest[.]webmanifest": { id: "routes/resources/manifest[.]webmanifest", parentId: "root", path: "resources/manifest.webmanifest", index: void 0, caseSensitive: void 0, module: "/build/routes/resources/manifest[.]webmanifest-B7J2LRZ4.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-CD609EAC.js" };
+var assets_manifest_default = { version: "1d82396a", entry: { module: "/build/entry.client-HP5ZXVQM.js", imports: ["/build/_shared/chunk-DEMPFQNT.js", "/build/_shared/chunk-FN3KWL4V.js", "/build/_shared/chunk-4IYZMDEG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-DSAQHILR.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-VCLE5BJK.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/resources/manifest[.]webmanifest": { id: "routes/resources/manifest[.]webmanifest", parentId: "root", path: "resources/manifest.webmanifest", index: void 0, caseSensitive: void 0, module: "/build/routes/resources/manifest[.]webmanifest-B7J2LRZ4.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-1D82396A.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
