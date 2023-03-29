@@ -191,8 +191,8 @@ const handlePush = (event) => {
 
   const options = {
     body: data.body ? data.body : "Notification Body Text",
-    icon: data.icon ? data.icon : "/icons/android-icon-192x192.png",
-    badge: data.badge ? data.badge : "/icons/android-icon-48x48.png",
+    icon: data.icon ? data.icon : "/android-icon-192x192.png",
+    badge: data.badge ? data.badge : "/android-icon-48x48.png",
     dir: data.dir ? data.dir : "auto",
     image: data.image ? data.image : undefined,
     silent: data.silent ? data.silent : false,

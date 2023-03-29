@@ -71,6 +71,28 @@ $blue: #005277;
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        .buttons {
+          display: flex;
+        }
+
+        .button-container {
+          position: relative;
+          display: flex;
+          align-items: center;
+          margin: 0 5px;
+
+          svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            height: 50%;
+            fill: #e6f7ff;
+            pointer-events: none;
+          }
+        }
       }
 
       .input-container {
@@ -110,7 +132,7 @@ $blue: #005277;
         color: #e6f7ff;
         border: none;
         border-radius: 10px;
-        margin-left: 10px;
+        // margin-left: 10px;
         height: 40px;
         cursor: pointer;
         transition: background-color 0.2s ease;
