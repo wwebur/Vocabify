@@ -6,6 +6,7 @@
     "dev": "run-p dev:*",
     "typecheck": "tsc",
     "sass": "sass --watch app/:app/",
+    "build:css": "sass app/:app/ --no-source-map --style compressed",
     "build:remix": "cross-env NODE_ENV=production remix build",
     "build:worker": "esbuild ./app/entry.worker.js --outfile=./public/entry.worker.js --minify --bundle --format=esm --define:process.env.NODE_ENV='\"production\"'",
     "dev:remix": "cross-env NODE_ENV=development concurrently \"npm run sass\" \"remix dev\"",
