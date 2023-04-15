@@ -107,3 +107,4 @@ dist
 .vercel
 public/build/
 .history/
+app/styles/

@@ -1,5 +1,6 @@
 import Input from "../components/input/Input";
-import styles from "~/index.css";
+import styles from "~/styles/index.css";
+import inputStyles from "~/styles/input.css";
 import { useState, useEffect } from "react";
 
 export function links() {
@@ -7,6 +8,10 @@ export function links() {
     {
       rel: "stylesheet",
       href: styles,
+    },
+    {
+      rel: "stylesheet",
+      href: inputStyles,
     },
     {
       rel: "apple-touch-icon",

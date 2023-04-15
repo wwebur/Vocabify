@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
@@ -7,14 +8,20 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export default async function submitPrompt(word = "") {
+  // check if openai api key is set
   if (!configuration.apiKey) {
     return Promise.reject({});
   }
 
+  // sanitize input
+  word = DOMPurify.sanitize(word);
+
+  // check if word is empty
   if (word.trim().length === 0) {
     return Promise.reject({ message: "Please enter a valid word" });
   }
 
+  // call openai api with input
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
@@ -29,6 +36,7 @@ export default async function submitPrompt(word = "") {
   }
 }
 
+// generate prompt for openai with user input
 function generatePrompt(word) {
   return `Define the word ${word}. Then give me an example of its use in a sentence. Use proper grammar and punctuation. 
   
