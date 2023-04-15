@@ -1,0 +1,112 @@
+@import "variables";
+
+.input-component {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .buttons {
+      display: flex;
+    }
+
+    .button-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin: 0 5px;
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        height: 50%;
+        fill: #e6f7ff;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    .word-input {
+      width: 95%;
+      max-width: 300px;
+      height: 40px;
+      text-align: center;
+      outline: none;
+      padding: 20px 20px 10px;
+      font-size: 42px;
+      line-height: 1;
+      border: none;
+      border-bottom: 2px solid $blue;
+      font-family: "Lobster", sans-serif;
+
+      &:focus {
+        transform: scale(1.03);
+        transition: transform 0.2s ease;
+      }
+
+      &::placeholder {
+        color: #00517733;
+      }
+    }
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0078d48c;
+    color: #e6f7ff;
+    border: none;
+    border-radius: 10px;
+    // margin-left: 10px;
+    height: 40px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &.submit-btn {
+      margin-top: 20px;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+
+    &:hover {
+      background-color: darken(#0078d48c, 10%);
+      transition: all 0.2s ease;
+    }
+
+    &:disabled {
+      background-color: #b5cdd8b4;
+      cursor: not-allowed;
+    }
+  }
+
+  .error {
+    margin-top: 20px;
+  }
+
+  .listening {
+    margin-top: 20px;
+  }
+
+  .loader {
+    margin-top: 40px;
+  }
+}
