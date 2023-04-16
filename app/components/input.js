@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "regenerator-runtime";
 import { createSpeechlySpeechRecognition } from "@speechly/speech-recognition-polyfill";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import submitPrompt from "../../api/prompt";
+import submitPrompt from "../api/prompt";
 import DOMPurify from "dompurify";
 import { PropagateLoader } from "react-spinners";
+import Response from "./response";
 
 // use speechly polyfill for browser support
 const appId = "c95dfa5c-ef43-437c-8400-f64515f67846";
@@ -13,13 +14,12 @@ SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
 function Input() {
   const [isReady, setIsReady] = useState(false);
-  const [speech, setSpeech] = useState("");
+  const [query, setQuery] = useState("");
   const [speechInput, setSpeechInput] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const genericError = "Something went wrong :(<br/>Please try again.";
-  const responseRef = useRef();
   const { transcript, resetTranscript, listening, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   useEffect(() => {
@@ -30,20 +30,13 @@ function Input() {
     }
   }, [transcript]);
 
-  // scroll to results
-  useEffect(() => {
-    if (response) {
-      responseRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [response]);
-
   useEffect(() => {
     setIsReady(true);
   }, []);
 
   async function onSubmit(e) {
     e.preventDefault();
-    setSpeech(speechInput);
+    setQuery(speechInput);
     setResponse("");
     setIsLoading(true);
     setError("");
@@ -61,22 +54,12 @@ function Input() {
   }
 
   function reset() {
-    setSpeech("");
+    setQuery("");
     setSpeechInput("");
     setResponse("");
     resetTranscript();
     SpeechRecognition.stopListening();
     setError("");
-  }
-
-  // function that finds a particular word in a string and bolds it
-  function highlightWord(word, string) {
-    if (!word || !string) {
-      return;
-    }
-
-    const regex = new RegExp(word, "gi");
-    return string.replace(regex, `<b>${word}</b>`);
   }
 
   if (!isReady) {
@@ -180,21 +163,7 @@ function Input() {
       {isLoading && <PropagateLoader color="#005277" className="loader" />}
 
       {/* response */}
-      {response && (
-        <div className="response" ref={responseRef}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(highlightWord(speech, response.definition)),
-            }}
-          ></div>
-          <br />
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `"${DOMPurify.sanitize(highlightWord(speech, response.example))}"`,
-            }}
-          ></div>
-        </div>
-      )}
+      {response && <Response data={response} query={query} />}
     </div>
   );
 }

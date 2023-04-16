@@ -1,4 +1,4 @@
-import Input from "../components/input/Input";
+import Input from "../components/input";
 import styles from "~/styles/index.css";
 import inputStyles from "~/styles/input.css";
 import { useState, useEffect } from "react";

@@ -108,4 +108,4 @@ dist
 public/build/
 .history/
 *.css
-*.css.map
+*.map
